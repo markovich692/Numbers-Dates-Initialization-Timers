@@ -264,20 +264,16 @@ btnSort.addEventListener('click', function (e) {
 
 // console.log(randomInt(8, 18));
 
-// Array.from(document.querySelectorAll('.movements__row'), function (el, i) {
-//   console.log(el, i);
-
-//   return i % 2 === 0 ? el.style.backgroundCOlor === 'orangered' : el;
-// });
-
-// Array.from(document.querySelectorAll('.movements__row'), function (el, i) {
-//   return i % 2 === 0 ? el.style.backgroundColor === 'blue' : el;
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+//     if (i % 2 === 0) {
+//       return (row.style.backgroundColor = 'orangered');
+//     }
+//   });
 // });
 
 labelBalance.addEventListener('click', function () {
-  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
-    if (i % 2 === 0) {
-      return (row.style.backgroundColor = 'orangered');
-    }
+  Array.from(document.querySelectorAll('.movements__row'), function (el, i) {
+    i % 2 === 0 ? (el.style.backgroundColor = 'orangered') : el;
   });
 });
