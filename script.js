@@ -258,7 +258,7 @@ btnSort.addEventListener('click', function (e) {
 const randomInt = function (min, max) {
   console.log(Math.random());
 
-  return Math.round(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 console.log(randomInt(8, 18));
