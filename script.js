@@ -206,7 +206,8 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmount.value;
+  //Using the + operator to convert the input into a Number
+  const amount = Math.floor(+inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -255,10 +256,10 @@ btnSort.addEventListener('click', function (e) {
 // console.log(Number.isFinite(20));
 // console.log(Number.isFinite('hello'));
 
-const randomInt = function (min, max) {
-  console.log(Math.random());
+// const randomInt = function (min, max) {
+//   console.log(Math.random());
 
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// };
 
-console.log(randomInt(8, 18));
+// console.log(randomInt(8, 18));
