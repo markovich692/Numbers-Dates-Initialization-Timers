@@ -251,3 +251,14 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// console.log(Number.isFinite(20));
+// console.log(Number.isFinite('hello'));
+
+const randomInt = function (min, max) {
+  console.log(Math.random());
+
+  return Math.round(Math.random() * (max - min)) + min;
+};
+
+console.log(randomInt(8, 18));
