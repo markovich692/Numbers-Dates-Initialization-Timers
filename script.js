@@ -84,6 +84,8 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
+  console.log(movements);
+
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
@@ -290,8 +292,17 @@ btnSort.addEventListener('click', function (e) {
 // console.log(2000000000000n + ' were present at the wedding');
 
 //Gets the date and time at the very moment
-const now = new Date();
-console.log(now);
+// const now = new Date();
+// console.log(now);
 
 //Parse the date from date string
-console.log(new Date('Fri Jan 17 2025'));
+// console.log(new Date('2015, December 24'));
+
+//Creates an array of all the dates and times to the different movements on account1
+const arrDates = account1.movementsDates.map(date => new Date(date));
+
+const arrDatesStringOnly = arrDates.map(function (date) {
+  return String(date).slice(4, 15);
+});
+
+console.log(arrDatesStringOnly);
