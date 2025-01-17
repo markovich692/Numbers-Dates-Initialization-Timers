@@ -272,8 +272,17 @@ btnSort.addEventListener('click', function (e) {
 //   });
 // });
 
-labelBalance.addEventListener('click', function () {
-  Array.from(document.querySelectorAll('.movements__row'), function (el, i) {
-    i % 2 === 0 ? (el.style.backgroundColor = 'orangered') : el;
-  });
-});
+// labelBalance.addEventListener('click', function () {
+//   Array.from(document.querySelectorAll('.movements__row'), function (el, i) {
+//     i % 2 === 0 ? (el.style.backgroundColor = 'orangered') : el;
+//     i % 3 === 0 ? (el.style.backgroundColor = 'lightblue') : el;
+//   });
+// });
+
+// console.log(parseFloat('2.5806px'));
+
+// console.log((3.6).toFixed(0));
+
+//MAX_SAFE_INTEGER
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
