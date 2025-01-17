@@ -289,5 +289,9 @@ btnSort.addEventListener('click', function (e) {
 
 // console.log(2000000000000n + ' were present at the wedding');
 
+//Gets the date and time at the very moment
 const now = new Date();
 console.log(now);
+
+//Parse the date from date string
+console.log(new Date('Fri Jan 17 2025'));
