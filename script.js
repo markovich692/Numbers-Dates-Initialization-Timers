@@ -184,8 +184,8 @@ updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
 const now = new Date();
-const curDay = now.getDate();
-const curMonth = now.getMonth() + 1;
+const curDay = `${now.getDate()}`.padStart(2, '0');
+const curMonth = `${now.getMonth() + 1}`.padStart(2, '0');
 const curYear = now.getFullYear();
 const curHours = now.getHours();
 const curMins = now.getMinutes();
