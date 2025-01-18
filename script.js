@@ -183,6 +183,17 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
+const now = new Date();
+const curDay = now.getDate();
+const curMonth = now.getMonth() + 1;
+const curYear = now.getFullYear();
+const curHours = now.getHours();
+const curMins = now.getMinutes();
+
+console.log(now, curDay, curMonth);
+
+labelDate.textContent = `${curDay}/${curMonth}/${curYear} ${curHours}:${curMins}`;
+
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
