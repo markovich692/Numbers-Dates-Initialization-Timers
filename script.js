@@ -177,19 +177,6 @@ const updateUI = function (acc) {
 
 let currentAccount;
 
-//FAKE always LOGGED IN
-
-const now = new Date();
-const curDay = `${now.getDate()}`.padStart(2, '0');
-const curMonth = `${now.getMonth() + 1}`.padStart(2, '0');
-const curYear = now.getFullYear();
-const curHours = now.getHours();
-const curMins = now.getMinutes();
-
-// console.log(now, curDay, curMonth);
-
-labelDate.textContent = `${curDay}/${curMonth}/${curYear}, ${curHours}:${curMins}`;
-
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -204,6 +191,15 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+    //Display current date and time
+    const now = new Date();
+    const curDay = `${now.getDate()}`.padStart(2, '0');
+    const curMonth = `${now.getMonth() + 1}`.padStart(2, '0');
+    const curYear = now.getFullYear();
+    const curHours = now.getHours();
+    const curMins = now.getMinutes();
+
+    labelDate.textContent = `${curDay}/${curMonth}/${curYear}, ${curHours}:${curMins}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -246,6 +242,9 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
     currentAccount.movements.push(amount);
+
+    //Add dates
+    currentAccount.movementsDates.push(new Date());
 
     // Update UI
     updateUI(currentAccount);
