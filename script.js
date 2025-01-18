@@ -88,21 +88,19 @@ const displayMovements = function (acc, sort = false) {
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
 
-  // console.log(movs);
-
   //Loops over each of the movements
   movs.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
     //Loops over each of the movementsDate and stores it in the movementsDate variable
     const movementsDate = new Date(acc.movementsDates[i]);
 
-    const date = movementsDate.getDate();
-    const month = movementsDate.getMonth();
+    const day = `${movementsDate.getDate()}`.padStart(2, '0');
+    const month = `${movementsDate.getMonth() + 1}`.padStart(2, '0');
     const year = movementsDate.getFullYear();
 
-    const fullDate = `${date}/${month}/${year}`;
+    const fullDate = `${day}/${month}/${year}`;
     // console.log(fullDate);
-
-    const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     //HTML TEMPLATES
 
@@ -180,9 +178,6 @@ const updateUI = function (acc) {
 let currentAccount;
 
 //FAKE always LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
 
 const now = new Date();
 const curDay = `${now.getDate()}`.padStart(2, '0');
