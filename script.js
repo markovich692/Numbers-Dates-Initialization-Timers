@@ -84,6 +84,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
+  //Sorting the movements in ascending order
   const movs = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
@@ -228,9 +229,9 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
-    //Adss dates
-    currentAccount.movementsDates.push(new Date());
-    receiverAcc.movementsDates.push(new Date());
+    //Adds dates
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
@@ -248,7 +249,7 @@ btnLoan.addEventListener('click', function (e) {
     currentAccount.movements.push(amount);
 
     //Add dates
-    currentAccount.movementsDates.push(new Date());
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
