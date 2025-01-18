@@ -197,8 +197,8 @@ btnLogin.addEventListener('click', function (e) {
     const curDay = `${now.getDate()}`.padStart(2, '0');
     const curMonth = `${now.getMonth() + 1}`.padStart(2, '0');
     const curYear = now.getFullYear();
-    const curHours = now.getHours().padStart(2, '0');
-    const curMins = now.getMinutes().padStart(2, '0');
+    const curHours = `${now.getHours()}`.padStart(2, '0');
+    const curMins = `${now.getMinutes()}`.padStart(2, '0');
 
     labelDate.textContent = `${curDay}/${curMonth}/${curYear}, ${curHours}:${curMins}`;
 
