@@ -81,21 +81,39 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (account, sort = false) {
   containerMovements.innerHTML = '';
 
-  console.log(movements);
+  // console.log(account);
 
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  //Transaction date
+  const dateTransaction = account.movementsDates
+    .map(date => new Date(date))
+    .map(function (date) {
+      return String(date).slice(4, 15);
+    });
+
+  // console.log(dateTransaction);
+
+  const movs = sort
+    ? account.movements.slice().sort((a, b) => a - b)
+    : account.movements;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    //HTML TEMPLATES
 
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
+
+    <div class="movements__date"> 
+    
+    
+    </div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
@@ -143,8 +161,10 @@ const createUsernames = function (accs) {
 createUsernames(accounts);
 
 const updateUI = function (acc) {
+  // console.log(acc);
+
   // Display movements
-  displayMovements(acc.movements);
+  displayMovements(acc);
 
   // Display balance
   calcDisplayBalance(acc);
@@ -155,7 +175,13 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
+
 let currentAccount;
+
+//FAKE always LOGGED IN
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -164,7 +190,6 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
@@ -299,10 +324,15 @@ btnSort.addEventListener('click', function (e) {
 // console.log(new Date('2015, December 24'));
 
 //Creates an array of all the dates and times to the different movements on account1
-const arrDates = account1.movementsDates.map(date => new Date(date));
 
-const arrDatesStringOnly = arrDates.map(function (date) {
-  return String(date).slice(4, 15);
-});
+// const dayNew = new Date();
 
-console.log(arrDatesStringOnly);
+// console.log(dayNew.getDay());
+
+// console.dir(dayNew);
+
+// console.log(Date.now());
+
+// console.log(new Date(Date.now()));
+
+// console.log(Date.now());
