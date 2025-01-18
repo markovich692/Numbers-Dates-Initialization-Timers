@@ -88,20 +88,18 @@ const displayMovements = function (acc, sort = false) {
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
 
-  console.log(movs);
+  // console.log(movs);
 
-  //LOOP over each of the movements
+  //Loops over each of the movements
   movs.forEach(function (mov, i) {
-    //Loops over each of the movementsDate and stores it
+    //Loops over each of the movementsDate and stores it in the movementsDate variable
     const movementsDate = new Date(acc.movementsDates[i]);
 
-    console.log(movementsDate.getDate());
+    const date = movementsDate.getDate();
+    const month = movementsDate.getMonth();
+    const year = movementsDate.getFullYear();
 
-    // const date = movementsDate.getDate();
-    // const month = movementsDate.getMonth();
-    // const year = movementsDate.getFullYear();
-    // console.log(year);
-    // const fullDate = `${date}/${month}/${year}`;
+    const fullDate = `${date}/${month}/${year}`;
     // console.log(fullDate);
 
     const type = mov > 0 ? 'deposit' : 'withdrawal';
@@ -115,8 +113,7 @@ const displayMovements = function (acc, sort = false) {
     } ${type}</div>
 
     <div class="movements__date"> 
-    
-    
+    ${fullDate}
     </div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
