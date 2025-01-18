@@ -81,25 +81,29 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const displayMovements = function (account, sort = false) {
+const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
-  // console.log(account);
-
-  //Transaction date
-  const dateTransaction = account.movementsDates
-    .map(date => new Date(date))
-    .map(function (date) {
-      return String(date).slice(4, 15);
-    });
-
-  // console.log(dateTransaction);
-
   const movs = sort
-    ? account.movements.slice().sort((a, b) => a - b)
-    : account.movements;
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
 
+  console.log(movs);
+
+  //LOOP over each of the movements
   movs.forEach(function (mov, i) {
+    //Loops over each of the movementsDate and stores it
+    const movementsDate = new Date(acc.movementsDates[i]);
+
+    console.log(movementsDate.getDate());
+
+    // const date = movementsDate.getDate();
+    // const month = movementsDate.getMonth();
+    // const year = movementsDate.getFullYear();
+    // console.log(year);
+    // const fullDate = `${date}/${month}/${year}`;
+    // console.log(fullDate);
+
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     //HTML TEMPLATES
@@ -190,9 +194,9 @@ const curYear = now.getFullYear();
 const curHours = now.getHours();
 const curMins = now.getMinutes();
 
-console.log(now, curDay, curMonth);
+// console.log(now, curDay, curMonth);
 
-labelDate.textContent = `${curDay}/${curMonth}/${curYear} ${curHours}:${curMins}`;
+labelDate.textContent = `${curDay}/${curMonth}/${curYear}, ${curHours}:${curMins}`;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -283,7 +287,7 @@ btnClose.addEventListener('click', function (e) {
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 });
 
