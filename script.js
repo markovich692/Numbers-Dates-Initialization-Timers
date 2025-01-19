@@ -84,7 +84,17 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
-  console.log(acc);
+  //Creates an array of movements and dates objects
+
+  const combinedMovementsDates = acc.movements.map(function (mov, i) {
+    return {
+      mov,
+
+      date: acc.movementsDates[i],
+    };
+  });
+
+  console.log(combinedMovementsDates);
 
   //Sorting the movements in ascending order
   const movs = sort
@@ -96,15 +106,15 @@ const displayMovements = function (acc, sort = false) {
     ? acc.movementsDates.slice().sort((a, b) => new Date(a) - new Date(b))
     : acc.movementsDates;
 
-  console.log(movsDate);
+  // console.log(movsDate);
   //Loops over each of the movements
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
-    console.log(movsDate);
-
     //Loops over each of the movementsDate and stores it in the movementsDate variable
     const movementsDate = new Date(acc.movementsDates[i]);
+
+    // console.log(movementsDate);
 
     const day = `${movementsDate.getDate()}`.padStart(2, '0');
     const month = `${movementsDate.getMonth() + 1}`.padStart(2, '0');
@@ -359,5 +369,7 @@ btnSort.addEventListener('click', function (e) {
 // console.log(Date.now());
 
 // console.log(account2.movementsDates);
-// const ascendingMovsDate = account2.movementsDates.sort();
+const ascendingMovsDate = account2.movementsDates.sort(
+  (a, b) => new Date(a) - new Date(b)
+);
 // console.log(ascendingMovsDate);
