@@ -93,14 +93,15 @@ const displayMovements = function (acc, sort = false) {
 
   //Sorting the movements dates in ascending order and storing it in the movsDate variable
   const movsDate = sort
-    ? acc.movementsDates.slice().sort((a, b) => a - b)
+    ? acc.movementsDates.slice().sort((a, b) => new Date(a) - new Date(b))
     : acc.movementsDates;
 
   console.log(movsDate);
-
   //Loops over each of the movements
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    console.log(movsDate);
 
     //Loops over each of the movementsDate and stores it in the movementsDate variable
     const movementsDate = new Date(acc.movementsDates[i]);
@@ -356,3 +357,7 @@ btnSort.addEventListener('click', function (e) {
 // console.log(new Date(Date.now()));
 
 // console.log(Date.now());
+
+// console.log(account2.movementsDates);
+// const ascendingMovsDate = account2.movementsDates.sort();
+// console.log(ascendingMovsDate);
