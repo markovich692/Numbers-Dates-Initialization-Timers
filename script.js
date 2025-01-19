@@ -88,31 +88,25 @@ const displayMovements = function (acc, sort = false) {
 
   const combinedMovementsDates = acc.movements.map(function (mov, i) {
     return {
-      mov,
+      movement: mov,
 
-      date: acc.movementsDates[i],
+      date: acc.movementsDates.at(i),
     };
   });
 
-  console.log(combinedMovementsDates);
+  // console.log(combinedMovementsDates);
 
-  //Sort the combined Movements and dates array
-  const combinedSort = sort
-    ? combinedMovementsDates.slice().sort((a, b) => a.mov - b.mov)
-    : combinedMovementsDates;
-
-  console.log(combinedSort);
-
-  const movs = combinedSort.map(el => el.mov);
-
-  const movsDate = combinedSort.map(el => el.date);
+  //Sort the combined Movements and Dates array
+  if (sort) combinedMovementsDates.sort((a, b) => a.movement - b.movement);
 
   //Loops over each of the movements
-  movs.forEach(function (mov, i) {
-    const type = mov > 0 ? 'deposit' : 'withdrawal';
+  combinedMovementsDates.forEach(function (obj, i) {
+    const { movement, date } = obj;
+
+    const type = movement > 0 ? 'deposit' : 'withdrawal';
 
     //Loops over each of the movementsDate and stores it in the movementsDate variable
-    const movementsDate = new Date(movsDate[i]);
+    const movementsDate = new Date(date);
 
     // console.log(movementsDate);
 
@@ -134,7 +128,7 @@ const displayMovements = function (acc, sort = false) {
     <div class="movements__date"> 
     ${fullDate}
     </div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${movement.toFixed(2)}€</div>
       </div>
     `;
 
