@@ -84,10 +84,19 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
+  console.log(acc);
+
   //Sorting the movements in ascending order
   const movs = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
+
+  //Sorting the movements dates in ascending order and storing it in the movsDate variable
+  const movsDate = sort
+    ? acc.movementsDates.slice().sort((a, b) => a - b)
+    : acc.movementsDates;
+
+  console.log(movsDate);
 
   //Loops over each of the movements
   movs.forEach(function (mov, i) {
