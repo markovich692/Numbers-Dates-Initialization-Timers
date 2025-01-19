@@ -96,10 +96,19 @@ const displayMovements = function (acc, sort = false) {
 
   console.log(combinedMovementsDates);
 
+  //Sort the combined Movements and dates array
+  const comobinedSort = sort
+    ? combinedMovementsDates.slice().sort((a, b) => a.mov - b.mov)
+    : combinedMovementsDates;
+
+  console.log(ascendingArr);
+
   //Sorting the movements in ascending order
-  const movs = sort
-    ? acc.movements.slice().sort((a, b) => a - b)
-    : acc.movements;
+  // const movs = sort
+  //   ? acc.movements.slice().sort((a, b) => a - b)
+  //   : acc.movements;
+
+  console.log(movs);
 
   //Sorting the movements dates in ascending order and storing it in the movsDate variable
   const movsDate = sort
