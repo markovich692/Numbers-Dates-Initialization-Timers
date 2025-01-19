@@ -97,31 +97,22 @@ const displayMovements = function (acc, sort = false) {
   console.log(combinedMovementsDates);
 
   //Sort the combined Movements and dates array
-  const comobinedSort = sort
+  const combinedSort = sort
     ? combinedMovementsDates.slice().sort((a, b) => a.mov - b.mov)
     : combinedMovementsDates;
 
-  console.log(ascendingArr);
+  console.log(combinedSort);
 
-  //Sorting the movements in ascending order
-  // const movs = sort
-  //   ? acc.movements.slice().sort((a, b) => a - b)
-  //   : acc.movements;
+  const movs = combinedSort.map(el => el.mov);
 
-  console.log(movs);
+  const movsDate = combinedSort.map(el => el.date);
 
-  //Sorting the movements dates in ascending order and storing it in the movsDate variable
-  const movsDate = sort
-    ? acc.movementsDates.slice().sort((a, b) => new Date(a) - new Date(b))
-    : acc.movementsDates;
-
-  // console.log(movsDate);
   //Loops over each of the movements
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     //Loops over each of the movementsDate and stores it in the movementsDate variable
-    const movementsDate = new Date(acc.movementsDates[i]);
+    const movementsDate = new Date(movsDate[i]);
 
     // console.log(movementsDate);
 
