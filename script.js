@@ -263,7 +263,9 @@ btnLogin.addEventListener('click', function (e) {
       weekday: 'long',
     };
 
-    labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(
+    const locale = navigator.language;
+
+    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
       now
     );
 
