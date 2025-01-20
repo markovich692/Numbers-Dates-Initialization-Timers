@@ -363,7 +363,19 @@ btnSort.addEventListener('click', function (e) {
 // console.log(Date.now());
 
 // console.log(account2.movementsDates);
-const ascendingMovsDate = account2.movementsDates.sort(
-  (a, b) => new Date(a) - new Date(b)
-);
+// const ascendingMovsDate = account2.movementsDates.sort(
+//   (a, b) => new Date(a) - new Date(b)
+// );
 // console.log(ascendingMovsDate);
+
+const randomDate = new Date(2039, 9, 9, 8, 15);
+
+// console.log(randomDate);
+// console.log(typeof +randomDate);
+// console.log(new Date(+randomDate));
+
+const daysInBetween = (day1, day2) => (day2 - day1) / (24 * 60 * 60 * 1000);
+
+const dayGap = daysInBetween(new Date(2026, 8, 9), new Date(2026, 8, 19));
+
+console.log(dayGap + ' days');
