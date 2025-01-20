@@ -206,21 +206,28 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-///////////////////////////////////////
 // Event handlers
 
 let currentAccount;
 
-//////
 //FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
-const rightNow = new Date();
-labelDate.textContent = new Intl.DateTimeFormat('en-US').format(rightNow);
+// const rightNow = new Date();
+// const options = {
+//   hour: 'numeric',
+//   minute: 'numeric',
+//   day: 'numeric',
+//   month: 'long',
+//   year: 'numeric',
+//   weekday: 'short',
+// };
+// labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(
+//   rightNow
+// );
 
-//////
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -246,7 +253,19 @@ btnLogin.addEventListener('click', function (e) {
     // labelDate.textContent = `${curDay}/${curMonth}/${curYear}, ${curHours}:${curMins}`;
 
     const now = new Date();
-    labelDate.textContent = new Intl.DateTimeFormat('en-US').format(now);
+
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      weekday: 'long',
+    };
+
+    labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(
+      now
+    );
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
