@@ -78,14 +78,28 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
+//Format dates
+const formatMovementDate = function (date) {
+  const movementsDate = new Date(date);
+  const day = `${movementsDate.getDate()}`.padStart(2, '0');
+  const month = `${movementsDate.getMonth() + 1}`.padStart(2, '0');
+  const year = movementsDate.getFullYear();
+
+  const fullDate = `${day}/${month}/${year}`;
+
+  return fullDate;
+  const daysInBetween = (date1, date2) =>
+    Math.abs((date2 - date1) / (24 * 60 * 60 * 1000));
+};
+
 // Functions
 
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
-  //Creates an array of movements and dates objects
+  console.log(acc);
 
+  //Creates an array of movements and dates objects
   const combinedMovementsDates = acc.movements.map(function (mov, i) {
     return {
       movement: mov,
@@ -94,28 +108,20 @@ const displayMovements = function (acc, sort = false) {
     };
   });
 
-  // console.log(combinedMovementsDates);
+  console.log(combinedMovementsDates);
 
   //Sort the combined Movements and Dates array
   if (sort) combinedMovementsDates.sort((a, b) => a.movement - b.movement);
 
-  //Loops over each of the movements
+  //Loops over each of the movements objects
   combinedMovementsDates.forEach(function (obj, i) {
+    //Deconstructs the dates and movements objects
     const { movement, date } = obj;
 
+    //Uses the function formatMovementDate to pass in the date and formats it
+    const fullFormattedDate = formatMovementDate(date);
+
     const type = movement > 0 ? 'deposit' : 'withdrawal';
-
-    //Loops over each of the movementsDate and stores it in the movementsDate variable
-    const movementsDate = new Date(date);
-
-    // console.log(movementsDate);
-
-    const day = `${movementsDate.getDate()}`.padStart(2, '0');
-    const month = `${movementsDate.getMonth() + 1}`.padStart(2, '0');
-    const year = movementsDate.getFullYear();
-
-    const fullDate = `${day}/${month}/${year}`;
-    // console.log(fullDate);
 
     //HTML TEMPLATES
 
@@ -126,7 +132,7 @@ const displayMovements = function (acc, sort = false) {
     } ${type}</div>
 
     <div class="movements__date"> 
-    ${fullDate}
+    ${fullFormattedDate}
     </div>
         <div class="movements__value">${movement.toFixed(2)}€</div>
       </div>
@@ -136,6 +142,7 @@ const displayMovements = function (acc, sort = false) {
   });
 };
 
+//////////////////////////////////////////////////////////////////////
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${acc.balance}€`;
@@ -368,14 +375,29 @@ btnSort.addEventListener('click', function (e) {
 // );
 // console.log(ascendingMovsDate);
 
-const randomDate = new Date(2039, 9, 9, 8, 15);
+// const randomDate = new Date(2039, 9, 9, 8, 15);
 
 // console.log(randomDate);
-// console.log(typeof +randomDate);
+// console.log(+randomDate);
 // console.log(new Date(+randomDate));
 
-const daysInBetween = (day1, day2) => (day2 - day1) / (24 * 60 * 60 * 1000);
+////////
+// const daysInBetween = (day1, day2) => (day2 - day1) / (24 * 60 * 60 * 1000);
 
-const dayGap = daysInBetween(new Date(2026, 8, 9), new Date(2026, 8, 19));
+// const daysGap = daysInBetween(new Date(2026, 8, 9), new Date(2026, 8, 19));
 
-console.log(dayGap + ' days');
+// console.log(`There are ${daysGap} days between the 2 dates.`);
+///////
+// const daysInBetween = (day1, day2) =>
+//   Math.abs((day2 - day1) / (24 * 60 * 60 * 1000));
+
+// const daysInBetweenMod = daysInBetween.bind(null, new Date(Date.now()));
+
+// console.log(daysInBetweenMod(new Date(2026, 8, 19)));
+
+//Calculate the number of days that elapsed after the transaction
+
+//  const daysInBetween = (day1, day2) =>
+//   Math.abs((day2 - day1) / (24 * 60 * 60 * 1000));
+
+// const daysInBetweenMod = daysInBetween.bind(null, new Date(Date.now()));
