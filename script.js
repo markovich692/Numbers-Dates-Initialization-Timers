@@ -80,16 +80,25 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 //Format dates
 const formatMovementDate = function (date) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.abs((date2 - date1) / (24 * 60 * 60 * 1000));
+
+  console.log(new Date(Date.now()));
+
+  const daysPassed = calcDaysPassed(new Date(Date.now()), new Date(date));
+
+  const roundedDaysPassed = Math.round(daysPassed);
+
+  console.log(typeof roundedDaysPassed);
+
   const movementsDate = new Date(date);
   const day = `${movementsDate.getDate()}`.padStart(2, '0');
   const month = `${movementsDate.getMonth() + 1}`.padStart(2, '0');
   const year = movementsDate.getFullYear();
 
-  const fullDate = `${day}/${month}/${year}`;
+  // const fullDate = `${day}/${month}/${year}`;
 
-  return fullDate;
-  const daysInBetween = (date1, date2) =>
-    Math.abs((date2 - date1) / (24 * 60 * 60 * 1000));
+  return roundedDaysPassed === 0 ? 'Today' : `${roundedDaysPassed} days ago`;
 };
 
 // Functions
@@ -397,7 +406,14 @@ btnSort.addEventListener('click', function (e) {
 
 //Calculate the number of days that elapsed after the transaction
 
-//  const daysInBetween = (day1, day2) =>
+// const daysInBetween = (day1, day2) =>
 //   Math.abs((day2 - day1) / (24 * 60 * 60 * 1000));
+
+// const curDay = Date.now();
+// const randomDate = new Date(2025, 1, 13);
+// console.log(new Date(curDay));
+// console.log(randomDate);
+
+// console.log(daysInBetween(curDay, randomDate));
 
 // const daysInBetweenMod = daysInBetween.bind(null, new Date(Date.now()));
