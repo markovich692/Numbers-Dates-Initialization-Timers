@@ -79,7 +79,7 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 //Format dates
-const formatMovementDate = function (date, curAcc) {
+const formatMovementDate = function (date, locale) {
   //Calculate the days between current dates and past dates transactions
   const calcDaysPassed = (date1, date2) =>
     Math.abs((date2 - date1) / (24 * 60 * 60 * 1000));
@@ -100,9 +100,9 @@ const formatMovementDate = function (date, curAcc) {
     year: 'numeric',
   };
 
-  console.log(curAcc, date);
+  console.log(locale, date);
 
-  const fullDate = new Intl.DateTimeFormat(curAcc.locale, options).format(
+  const fullDate = new Intl.DateTimeFormat(locale, options).format(
     new Date(date)
   );
 
@@ -136,7 +136,7 @@ const displayMovements = function (acc, sort = false) {
     const { movement, date } = obj;
 
     //Uses the function formatMovementDate to pass in the date and formats it
-    const fullFormattedDate = formatMovementDate(date, currentAccount);
+    const fullFormattedDate = formatMovementDate(date, acc.locale);
 
     const type = movement > 0 ? 'deposit' : 'withdrawal';
 
@@ -262,9 +262,9 @@ btnLogin.addEventListener('click', function (e) {
       hour: 'numeric',
       minute: 'numeric',
       day: 'numeric',
-      month: 'long',
+      month: 'numeric',
       year: 'numeric',
-      weekday: 'long',
+      // weekday: 'long',
     };
 
     // const locale = navigator.language;
