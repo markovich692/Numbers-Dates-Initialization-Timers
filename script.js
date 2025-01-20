@@ -154,7 +154,6 @@ const displayMovements = function (acc, sort = false) {
   });
 };
 
-//////////////////////////////////////////////////////////////////////
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${acc.balance}€`;
@@ -263,7 +262,11 @@ btnLogin.addEventListener('click', function (e) {
       weekday: 'long',
     };
 
-    const locale = navigator.language;
+    // const locale = navigator.language;
+
+    //Gets the locale from the current account
+
+    const locale = currentAccount.locale;
 
     labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
       now
