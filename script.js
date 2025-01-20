@@ -94,17 +94,7 @@ const formatMovementDate = function (date, locale) {
   if (roundedDaysPassed === 1) return 'Yesterday';
   if (roundedDaysPassed <= 7) return `${roundedDaysPassed} days ago`;
 
-  const options = {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  };
-
-  console.log(locale, date);
-
-  const fullDate = new Intl.DateTimeFormat(locale, options).format(
-    new Date(date)
-  );
+  const fullDate = new Intl.DateTimeFormat(locale).format(new Date(date));
 
   return fullDate;
 };
