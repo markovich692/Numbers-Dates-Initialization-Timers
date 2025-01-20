@@ -79,7 +79,8 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 //Format dates
-const formatMovementDate = function (date) {
+const formatMovementDate = function (date, curAcc) {
+  //Calculate the days between current dates and past dates transactions
   const calcDaysPassed = (date1, date2) =>
     Math.abs((date2 - date1) / (24 * 60 * 60 * 1000));
 
@@ -89,18 +90,22 @@ const formatMovementDate = function (date) {
 
   const roundedDaysPassed = Math.round(daysPassed);
 
-  console.log(typeof roundedDaysPassed);
-
   if (roundedDaysPassed === 0) return 'Today';
   if (roundedDaysPassed === 1) return 'Yesterday';
   if (roundedDaysPassed <= 7) return `${roundedDaysPassed} days ago`;
 
-  const movementsDate = new Date(date);
-  const day = `${movementsDate.getDate()}`.padStart(2, '0');
-  const month = `${movementsDate.getMonth() + 1}`.padStart(2, '0');
-  const year = movementsDate.getFullYear();
+  const options = {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  };
 
-  const fullDate = `${day}/${month}/${year}`;
+  console.log(curAcc, date);
+
+  const fullDate = new Intl.DateTimeFormat(curAcc.locale, options).format(
+    new Date(date)
+  );
+
   return fullDate;
 };
 
@@ -131,7 +136,7 @@ const displayMovements = function (acc, sort = false) {
     const { movement, date } = obj;
 
     //Uses the function formatMovementDate to pass in the date and formats it
-    const fullFormattedDate = formatMovementDate(date);
+    const fullFormattedDate = formatMovementDate(date, currentAccount);
 
     const type = movement > 0 ? 'deposit' : 'withdrawal';
 
