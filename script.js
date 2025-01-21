@@ -192,12 +192,24 @@ const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+
+  const fullyFormattedIncome = formatNumber(incomes, acc.currency, acc.locale);
+
+  labelSumIn.textContent = `${fullyFormattedIncome}`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out.toFixed(2))}€`;
+
+  const fullyFormattedOut = formatNumber(
+    Math.abs(out),
+    acc.currency,
+    acc.locale
+  );
+
+  // labelSumOut.textContent = `${Math.abs(out.toFixed(2))}`;
+
+  labelSumOut.textContent = `${fullyFormattedOut}`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
