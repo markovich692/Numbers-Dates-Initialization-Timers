@@ -84,7 +84,7 @@ const formatMovementDate = function (date, locale) {
   const calcDaysPassed = (date1, date2) =>
     Math.abs((date2 - date1) / (24 * 60 * 60 * 1000));
 
-  console.log(new Date(Date.now()));
+  // console.log(new Date(Date.now()));
 
   const daysPassed = calcDaysPassed(new Date(Date.now()), new Date(date));
 
@@ -120,7 +120,7 @@ const displayMovements = function (acc, sort = false) {
   //Set innerHTML to an empty string
   containerMovements.innerHTML = '';
 
-  console.log(acc);
+  // console.log(acc);
 
   //Creates an array of movements and dates objects
   const combinedMovementsDates = acc.movements.map(function (mov, i) {
@@ -131,7 +131,7 @@ const displayMovements = function (acc, sort = false) {
     };
   });
 
-  console.log(combinedMovementsDates);
+  // console.log(combinedMovementsDates);
 
   //Sort the combined Movements and Dates array
   if (sort) combinedMovementsDates.sort((a, b) => a.movement - b.movement);
@@ -355,22 +355,29 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+//REQUEST A LOAN
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
   //Using the + operator to convert the input into a Number
   const amount = Math.floor(+inputLoanAmount.value);
 
-  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+  setTimeout(function () {
+    if (
+      amount > 0 &&
+      currentAccount.movements.some(mov => mov >= amount * 0.1)
+    ) {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    //Add dates
-    currentAccount.movementsDates.push(new Date().toISOString());
+      //Add dates
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
-  }
+      // Update UI
+      updateUI(currentAccount);
+    }
+  }, 3000);
+
   inputLoanAmount.value = '';
 });
 
@@ -531,14 +538,14 @@ btnSort.addEventListener('click', function (e) {
 // console.log(formattedCurrency);
 
 //the setTimeout() function
-const ingredients = ['spinach', 'olives'];
+// const ingredients = ['spinach', 'olives'];
 
-const pizzaTimer = setTimeout(
-  (ing1, ing2) => console.log(`This is a pizza with ${ing1} and ${ing2}.`),
-  5000,
-  ...ingredients
-);
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) => console.log(`This is a pizza with ${ing1} and ${ing2}.`),
+//   5000,
+//   ...ingredients
+// );
 
-if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+// if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
 
-console.log('...waiting');
+// console.log('...waiting');
