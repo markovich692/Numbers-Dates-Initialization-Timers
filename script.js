@@ -100,7 +100,6 @@ const formatMovementDate = function (date, locale) {
 };
 
 //Format Number function
-
 const formatNumber = function (number, currency, locale) {
   const options = {
     style: 'currency',
@@ -119,8 +118,6 @@ const formatNumber = function (number, currency, locale) {
 const displayMovements = function (acc, sort = false) {
   //Set innerHTML to an empty string
   containerMovements.innerHTML = '';
-
-  // console.log(acc);
 
   //Creates an array of movements and dates objects
   const combinedMovementsDates = acc.movements.map(function (mov, i) {
@@ -158,7 +155,6 @@ const displayMovements = function (acc, sort = false) {
     const type = movement > 0 ? 'deposit' : 'withdrawal';
 
     //HTML TEMPLATES
-
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
@@ -274,6 +270,8 @@ let currentAccount;
 // labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(
 //   rightNow
 // );
+
+//LOGOUT TIMER function
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -549,3 +547,15 @@ btnSort.addEventListener('click', function (e) {
 // if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
 
 // console.log('...waiting');
+
+// setInterval(function () {
+//   const now = new Date();
+
+//   const curTime = new Intl.DateTimeFormat(navigator.language, {
+//     hour: 'numeric',
+//     minute: 'numeric',
+//     second: 'numeric',
+//   }).format(now);
+
+//   console.log(curTime);
+// });
