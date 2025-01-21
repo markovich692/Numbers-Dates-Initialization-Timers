@@ -78,7 +78,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-//Format dates
+//Format Dates function
 const formatMovementDate = function (date, locale) {
   //Calculate the days between current dates and past dates transactions
   const calcDaysPassed = (date1, date2) =>
@@ -99,9 +99,25 @@ const formatMovementDate = function (date, locale) {
   return fullDate;
 };
 
+//Format Number function
+
+const formatNumber = function (number, currency, locale) {
+  const options = {
+    style: 'currency',
+
+    currency: currency,
+  };
+  const numberFormatted = new Intl.NumberFormat(locale, options).format(number);
+
+  return numberFormatted;
+};
+
+// console.log(formatNumber(160000, 'en-US'));
+
 // Functions
 
 const displayMovements = function (acc, sort = false) {
+  //Set innerHTML to an empty string
   containerMovements.innerHTML = '';
 
   console.log(acc);
@@ -127,6 +143,15 @@ const displayMovements = function (acc, sort = false) {
 
     //Uses the function formatMovementDate to pass in the date and formats it
     const fullFormattedDate = formatMovementDate(date, acc.locale);
+    const fullFormattedNumber = formatNumber(
+      movement,
+      acc.currency,
+      acc.locale
+    );
+
+    // console.log(Number(fullFormattedNumber).toFixed(2));
+
+    // console.log(+fullFormattedNumber.toFixed(3));
 
     const type = movement > 0 ? 'deposit' : 'withdrawal';
 
@@ -141,7 +166,7 @@ const displayMovements = function (acc, sort = false) {
     <div class="movements__date"> 
     ${fullFormattedDate}
     </div>
-        <div class="movements__value">${movement.toFixed(2)}€</div>
+        <div class="movements__value">${fullFormattedNumber}</div> 
       </div>
     `;
 
@@ -260,7 +285,6 @@ btnLogin.addEventListener('click', function (e) {
     // const locale = navigator.language;
 
     //Gets the locale from the current account
-
     const locale = currentAccount.locale;
 
     labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
@@ -452,3 +476,7 @@ btnSort.addEventListener('click', function (e) {
 // console.log(daysInBetween(curDay, randomDate));
 
 // const daysInBetweenMod = daysInBetween.bind(null, new Date(Date.now()));
+
+const num = 90.98;
+console.log(typeof num);
+console.log(num.toFixed(4));
