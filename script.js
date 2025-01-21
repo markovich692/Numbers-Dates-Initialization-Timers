@@ -219,7 +219,14 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+
+  const fullyFormattedInterest = formatNumber(
+    interest,
+    acc.currency,
+    acc.locale
+  );
+
+  labelSumInterest.textContent = `${fullyFormattedInterest}`;
 };
 
 const createUsernames = function (accs) {
