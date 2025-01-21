@@ -505,6 +505,36 @@ btnSort.addEventListener('click', function (e) {
 
 // const daysInBetweenMod = daysInBetween.bind(null, new Date(Date.now()));
 
-const num = 90.98;
-console.log(typeof num);
-console.log(num.toFixed(4));
+// const num = 90.98;
+// console.log(typeof num);
+// console.log(num.toFixed(4));
+
+// Formatting a date based on locale and different options
+// const date = new Date();
+// const locale = 'en-AU';
+// const options = {
+//   weekday: 'long', // weekday written in full
+//   year: 'numeric',
+//   month: 'long', //month written in full
+//   day: 'numeric',
+// };
+// const formattedDate = new Intl.DateTimeFormat(locale, options).format(date);
+// console.log(formattedDate); //output:
+
+// const amount = 1696044.67;
+// const locale = 'en-US';
+// const options = {
+//   style: 'currency',
+//   currency: 'EUR',
+// };
+// const formattedCurrency = new Intl.NumberFormat(locale, options).format(amount);
+// console.log(formattedCurrency);
+
+//the setTimeout() function
+const ingredients = ['spinach', 'olives'];
+
+setTimeout(
+  (ing1, ing2) => console.log(`This is a pizza with ${ing1} and ${ing2}.`),
+  5000,
+  ...ingredients
+);
