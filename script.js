@@ -143,6 +143,8 @@ const displayMovements = function (acc, sort = false) {
 
     //Uses the function formatMovementDate to pass in the date and formats it
     const fullFormattedDate = formatMovementDate(date, acc.locale);
+
+    //Uses the function formatNumber to pass in the movements number and formats it
     const fullFormattedNumber = formatNumber(
       movement,
       acc.currency,
@@ -176,7 +178,14 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+
+  const fullyFormattedBalance = formatNumber(
+    acc.balance,
+    acc.currency,
+    acc.locale
+  );
+
+  labelBalance.textContent = `${fullyFormattedBalance}`;
 };
 
 const calcDisplaySummary = function (acc) {
