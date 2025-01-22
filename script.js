@@ -249,14 +249,38 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+//////////////////////////////
+//LOGOUT TIMER function
+
+const startLogoutTimer = function () {
+  //Set the time to 5 minutes
+  //Call the timer every second
+  //In each call print the remaining time to the user interface
+  //When 0 stop timer and logs out user
+
+  //Set time to 5 minutes
+
+  // let time = new Date(1000 * 60 * 10);
+  let time = 100;
+
+  //Call the timer every second
+
+  setInterval(() => {
+    labelTimer.textContent = time;
+
+    time--;
+    // console.log(curTime);
+  }, 1000);
+};
+
 // Event handlers
 
 let currentAccount;
 
 //FAKE ALWAYS LOGGED IN
-// currentAccount = account1;
-// updateUI(currentAccount);
-// containerApp.style.opacity = 100;
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
 
 // const rightNow = new Date();
 // const options = {
@@ -271,8 +295,7 @@ let currentAccount;
 //   rightNow
 // );
 
-//LOGOUT TIMER function
-
+//BUTTON LOGIN
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -321,9 +344,16 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    //////////////////////////////////////////////////////
+    //TIME OUT
+
+    startLogoutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
+
+  console.log(currentAccount);
 });
 
 btnTransfer.addEventListener('click', function (e) {
@@ -483,18 +513,6 @@ btnSort.addEventListener('click', function (e) {
 // console.log(new Date(+randomDate));
 
 ////////
-// const daysInBetween = (day1, day2) => (day2 - day1) / (24 * 60 * 60 * 1000);
-
-// const daysGap = daysInBetween(new Date(2026, 8, 9), new Date(2026, 8, 19));
-
-// console.log(`There are ${daysGap} days between the 2 dates.`);
-///////
-// const daysInBetween = (day1, day2) =>
-//   Math.abs((day2 - day1) / (24 * 60 * 60 * 1000));
-
-// const daysInBetweenMod = daysInBetween.bind(null, new Date(Date.now()));
-
-// console.log(daysInBetweenMod(new Date(2026, 8, 19)));
 
 //Calculate the number of days that elapsed after the transaction
 
@@ -558,4 +576,36 @@ btnSort.addEventListener('click', function (e) {
 //   }).format(now);
 
 //   console.log(curTime);
-// });
+// }, 1000);
+
+// Example with setTimeout
+
+// const arrTest = Array.from({ length: 1 }, (cur, i) => 'world');
+
+// console.log(arrTest);
+
+// const testTimeout = setTimeout(
+//   name => {
+//     console.log(`Hello, ${name}!`);
+//   },
+//   3000,
+//   ...arrTest
+// ); // The time is in milliseconds so 3000 ms = 2s
+
+// // if (arrTest.includes('world')) clearTimeout(testTimeout);
+
+// console.log('In progress');
+
+// const dayDiff = function (day1, day2) {
+//   const timeStamp = Math.abs(new Date(day1) - new Date(day2));
+
+//   console.log(timeStamp);
+
+// console.log((timeStamp / 24) * 60 * 60 * 1000);
+
+//   return (timeStamp / 24) * 60 * 60 * 1000;
+// };
+
+// dayDiff((2023, 10, 10), (2023, 10, 19));
+
+// console.log(new Date(2017, 9, 7));
