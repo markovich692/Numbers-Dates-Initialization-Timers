@@ -280,6 +280,11 @@ const startLogoutTimer = function () {
   return timer;
 };
 
+const clearTimer = function () {
+  if (timer) clearInterval(timer);
+  timer = startLogoutTimer();
+};
+
 // Event handlers
 
 let currentAccount, timer;
@@ -352,9 +357,7 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
 
     //TIME OUT
-    console.log(timer);
-    if (timer) clearInterval(timer);
-    timer = startLogoutTimer();
+    clearTimer();
 
     // Update UI
     updateUI(currentAccount);
@@ -370,6 +373,8 @@ btnTransfer.addEventListener('click', function (e) {
     acc => acc.username === inputTransferTo.value
   );
   inputTransferAmount.value = inputTransferTo.value = '';
+
+  clearTimer();
 
   if (
     amount > 0 &&
@@ -396,6 +401,9 @@ btnLoan.addEventListener('click', function (e) {
 
   //Using the + operator to convert the input into a Number
   const amount = Math.floor(+inputLoanAmount.value);
+
+  //Clear the timer and logout timer
+  clearTimer();
 
   setTimeout(function () {
     if (
