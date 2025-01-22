@@ -273,6 +273,8 @@ const startLogoutTimer = function () {
   //Adds condition for when delay time reaches 0
   if (time === 0) {
     clearInterval(timer);
+    labelWelcome.textContent = `Log in to get started`;
+    containerApp.style.opacity = 0;
   }
 };
 
