@@ -259,18 +259,21 @@ const startLogoutTimer = function () {
   //When 0 stop timer and logs out user
 
   //Set time to 5 minutes
-
-  let time = 600;
+  let time = 120;
 
   //Call the timer every second
-
-  setInterval(() => {
+  const timer = setInterval(() => {
     let min = String(Math.trunc(time / 60)).padStart(2, 0);
     let sec = String(time % 60).padStart(2, 0);
     labelTimer.textContent = `${min}:${sec}`;
 
     time--;
   }, 1000);
+
+  //Adds condition for when delay time reaches 0
+  if (time === 0) {
+    clearInterval(timer);
+  }
 };
 
 // Event handlers
