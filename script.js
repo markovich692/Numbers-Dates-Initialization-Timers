@@ -251,7 +251,7 @@ const updateUI = function (acc) {
 
 //////////////////////////////
 //LOGOUT TIMER function
-
+// labelTimer.textContent = `10:00`;
 const startLogoutTimer = function () {
   //Set the time to 5 minutes
   //Call the timer every second
@@ -260,16 +260,16 @@ const startLogoutTimer = function () {
 
   //Set time to 5 minutes
 
-  // let time = new Date(1000 * 60 * 10);
-  let time = 100;
+  let time = 600;
 
   //Call the timer every second
 
   setInterval(() => {
-    labelTimer.textContent = time;
+    let min = String(Math.trunc(time / 60)).padStart(2, 0);
+    let sec = String(time % 60).padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
 
     time--;
-    // console.log(curTime);
   }, 1000);
 };
 
@@ -346,7 +346,6 @@ btnLogin.addEventListener('click', function (e) {
 
     //////////////////////////////////////////////////////
     //TIME OUT
-
     startLogoutTimer();
 
     // Update UI
