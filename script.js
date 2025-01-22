@@ -259,7 +259,7 @@ const startLogoutTimer = function () {
   //When 0 stop timer and logs out user
 
   //Set time to 5 minutes
-  let time = 120;
+  let time = 600;
 
   //Call the timer every second
   const timer = setInterval(() => {
@@ -268,14 +268,15 @@ const startLogoutTimer = function () {
     labelTimer.textContent = `${min}:${sec}`;
 
     time--;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+    }
   }, 1000);
 
   //Adds condition for when delay time reaches 0
-  if (time === 0) {
-    clearInterval(timer);
-    labelWelcome.textContent = `Log in to get started`;
-    containerApp.style.opacity = 0;
-  }
 };
 
 // Event handlers
@@ -283,9 +284,9 @@ const startLogoutTimer = function () {
 let currentAccount;
 
 //FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 // const rightNow = new Date();
 // const options = {
