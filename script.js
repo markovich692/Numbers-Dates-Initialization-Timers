@@ -258,9 +258,11 @@ const startLogoutTimer = function () {
     let sec = String(time % 60).padStart(2, 0);
     labelTimer.textContent = `${min}:${sec}`;
 
+    //Clears the Interval timer when the time reaches 0 second
     if (time === 0) {
       clearInterval(timer);
       labelWelcome.textContent = `Log in to get started`;
+
       containerApp.style.opacity = 0;
     }
 
@@ -268,18 +270,19 @@ const startLogoutTimer = function () {
   };
 
   //Set time to 5 minutes
-  let time = 10;
+  let time = 600;
 
   //Calls the tic function so to display the timer immediately
   tic();
 
   //Call the timer every second
   const timer = setInterval(tic, 1000);
+  return timer;
 };
 
 // Event handlers
 
-let currentAccount;
+let currentAccount, timer;
 
 //FAKE ALWAYS LOGGED IN
 // currentAccount = account1;
@@ -348,9 +351,10 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    //////////////////////////////////////////////////////
     //TIME OUT
-    startLogoutTimer();
+    console.log(timer);
+    if (timer) clearInterval(timer);
+    timer = startLogoutTimer();
 
     // Update UI
     updateUI(currentAccount);
